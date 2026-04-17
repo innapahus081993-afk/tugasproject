@@ -1,0 +1,22 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/php:8.2
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: composer install
+
+      - run:
+          name: Run Test
+          command: php artisan test
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
